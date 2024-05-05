@@ -6,7 +6,7 @@ const openai = new OpenAI({
   baseURL: process.env.BASE_URL,
 });
 
-export const action = async ({ request }) => {
+export const action = async ({ request }: { request: Request }) => {
   const { messages } = await request.json();
 
   const response = await openai.chat.completions.create({

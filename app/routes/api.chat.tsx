@@ -1,29 +1,20 @@
-import OpenAI from 'openai';
-import { OpenAIStream, StreamingTextResponse } from 'ai';
+import {createOpenAI} from '@ai-sdk/openai'
+import { OpenAIStream, StreamingTextResponse, streamText } from 'ai';
+import { LoaderFunctionArgs } from '@remix-run/node';
 
-const openai = new OpenAI({
-  apiKey: process.env.GROQ_API_KEY,
-  baseURL: process.env.BASE_URL,
+
+const groq = createOpenAI({
+  apiKey: process.env.GROQ_API_KEY ?? '',
+  baseURL: 'https://api.groq.com/openai/v1',
 });
 
-export const action = async ({ request }: { request: Request }) => {
+export const action = async ({ request }: LoaderFunctionArgs) => {
   const { messages } = await request.json();
 
-  try{
-    const response = await openai.chat.completions.create({
-    model: 'llama3-8b-8192',
-    stream: true,
+  const response = await streamText({
+    model: groq.chat('llama3-70b-8192'),
     messages,
   });
 
-  
-  
-
-  const stream = OpenAIStream(response);
-  return new StreamingTextResponse(stream);
-}
-catch (error) {
-  console.error("Error during API call:", error);
-  throw error;  // Ensure the error is visible in your logs
-}
+  return response.toAIStreamResponse();
 };

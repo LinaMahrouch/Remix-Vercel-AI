@@ -1,5 +1,5 @@
 import { MetaFunction } from '@remix-run/node';
-import { Form } from '@remix-run/react';
+import { Form, Link } from '@remix-run/react';
 import { useChat } from 'ai/react';
 import { SVGProps } from 'react';
 import { JSX } from 'react/jsx-runtime';
@@ -9,7 +9,7 @@ import { Input } from "~/components/ui/input";
 export const meta: MetaFunction = () => {
     return [
         { title: 'Remix Vercel AI' },
-        { name: 'description', content: 'Remix-Llama on GROQ with Vercel AI SDK and Remix' },
+        { name: 'description', content: 'Remix-Llama3 on GROQ with Vercel AI SDK and Remix' },
     ];
 };
 
@@ -18,11 +18,13 @@ export default function Index() {
     return (
         <div className="flex flex-col h-screen ">
             <header className="flex items-center justify-between bg-zinc-900 px-4 py-4 text-white">
-                <h1 className="text-2xl  font-medium">Llama on GROQ with Vercel AI SDK, Made with Remix 💿 </h1>
+                <h1 className="text-2xl  font-medium">Llama3 on GROQ with Vercel AI SDK, Made with Remix 💿 </h1>
                 <div className="flex items-center gap-2">
+                <Link to="/repo-url" className="text-black no-underline">
                     <Button variant="outline" className='text-black'  >
                         <GithubIcon className="mr-4 bg-black" /> Clone this repo
                     </Button>
+                    </Link>
                 </div>
             </header>
             <main className="flex-1 overflow-auto p-4 m-3">

@@ -27,6 +27,7 @@
     "react-dom": "^18.2.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "vercel": "^32.3.0",
     "zod": "^3.23.6"
   },
   "devDependencies": {
@@ -49,6 +50,6 @@
     "vite-tsconfig-paths": "^4.2.1"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   }
 }
